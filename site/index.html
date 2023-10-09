@@ -1,37 +1,153 @@
 <!DOCTYPE html>
-
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <title>NGINX on Railway</title>
-    <meta name="description" content="Choo Choo!" />
 
-    <link rel="icon" href="/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+<head>
+  <meta charset="utf-8">
+  <title>Reservation</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="modal.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/css?family=DM+Sans" rel="stylesheet">
+</head>
 
-    <link rel="stylesheet" href="/styles.css?v=1.0" />
-  </head>
+<body>
+  <div class="topnav" id="myTopnav">
+    <div class="header-logo">
+      <img alt="logo" src="Logo.png">
+    </div>
 
-  <body>
-    <main>
-      <img
-        src="https://railway.app/brand/logo-light.svg"
-        alt="Railway logo"
-        class="logo"
-      />
+    <div class="main-navbar">
+      <a href="#" class="active"><span>Accueil</span></a>
+      <a href="#"><span>Détails de l'évènement</span></a>
+      <a href="#"><span>À propos</span></a>
+      <a href="#"><span>Contact</span></a>
+      <a href="#"><span>Évènements passés</span></a>
+      <a href="javascript:void(0);" class="icon" onclick="editNav()">
+        <i class="fa fa-bars"></i>
+      </a>
+    </div>
 
-      <h1>NGINX on Railway</h1>
+  </div>
 
-      <p>
-        Choo Choo! This is an example of an NGINX static site running on
-        Railway.
-        <a
-          href="https://github.com/railwayapp/starters/tree/master/examples/nginx"
-          >View source</a
-        >.
-      </p>
-    </main>
+  <main>
+    <div class="hero-section">
+      <div class="hero-content">
+        <h1 class="hero-headline">Marathon national<br>de jeux vidéos</h1>
+        <p class="hero-text">Vous aimez jouer ? Notre prochain évènement gaming est ouvert aux réservations... Places
+          limitées !</p>
+        <button class="btn-signup modal-btn">je m'inscris</button>
+      </div>
+      <div class="hero-img">
+        <img src="./bg_img.jpg" alt="img">
+      </div>
+      <button class="btn-signup modal-btn">Je m'inscris</button>
+    </div>
 
-    <script src="/script.js"></script>
-  </body>
+    <div class="bground">
+      <div class="content">
+        <span class="close"></span>
+        <div class="modal-body">
+
+          <form name="reserve" method="get" onsubmit="validate()">
+            <!-- <form name="reserve" action="index.html" method="get" onsubmit="validate()"> -->
+            <div class="formData" data-error="Veuillez entrer 2 caractères ou plus.">
+              <label for="first">Prénom</label><br>
+              <input class="text-control" type="text" id="first" name="first" minlength="2">
+              <span id="firstError" class="error"></span><br>
+            </div>
+
+            <div class="formData" data-error="Veuillez entrer 2 caractères ou plus.">
+              <label for="last">Nom</label><br>
+              <input class="text-control" type="text" id="last" name="last">
+              <span id="lastError" class="error"></span><br>
+            </div>
+
+            <div class="formData" data-error="L'adresse électronique n'est pas valide.">
+              <label for="email">E-mail</label><br>
+              <input class="text-control" type="email" id="email" name="email">
+              <span id="emailError" class="error"></span><br>
+            </div>
+
+            <div class="formData" data-error="">
+              <label for="birthdate">Date de naissance</label><br>
+              <input class="text-control" type="date" id="birthdate" name="birthdate">
+              <span id="birthdateError" class="error"></span><br>
+            </div>
+
+            <div class="formData" data-error="Vous devez entrer un nombre de concours compris entre 0 et 99">
+              <label for="quantity">À combien de tournois GameOn avez-vous déjà participé ?</label><br>
+              <input type="number" class="text-control" id="quantity" name="quantity" min="0" max="99">
+              <span id="quantityError" class="error"></span><br>
+            </div>
+
+            <p class="text-label">A quel tournoi souhaitez-vous participer cette année ?</p>
+            <div class="formData" data-error="Veuillez devez choisir un emplacement">
+              <input class="checkbox-input" type="radio" id="location1" name="location" value="New York">
+              <label class="checkbox-label" for="location1">
+                <span class="checkbox-icon"></span>
+                New York</label>
+
+              <input class="checkbox-input" type="radio" id="location2" name="location" value="San Francisco">
+              <label class="checkbox-label" for="location2">
+                <span class="checkbox-icon"></span>
+                San Francisco</label>
+
+              <input class="checkbox-input" type="radio" id="location3" name="location" value="Seattle">
+              <label class="checkbox-label" for="location3">
+                <span class="checkbox-icon"></span>
+                Seattle</label>
+
+              <input class="checkbox-input" type="radio" id="location4" name="location" value="Chicago">
+              <label class="checkbox-label" for="location4">
+                <span class="checkbox-icon"></span>
+                Chicago</label>
+
+              <input class="checkbox-input" type="radio" id="location5" name="location" value="Boston">
+              <label class="checkbox-label" for="location5">
+                <span class="checkbox-icon"></span>
+                Boston</label>
+
+              <input class="checkbox-input" type="radio" id="location6" name="location" value="Portland">
+              <label class="checkbox-label" for="location6">
+                <span class="checkbox-icon"></span>
+                Portland</label>
+
+              <span id="locationError" class="error"></span><br>
+
+            </div>
+
+            <div class="formData" data-error="Vous devez accepter les conditions dutilisation.">
+              <input class="checkbox-input" type="checkbox" id="checkbox1" required>
+              <label class="checkbox2-label" for="checkbox1">
+                <span class="checkbox-icon"></span>
+                J'ai lu et accepté les conditions d'utilisation.*
+              </label>
+              <span id="conditionsError" class="error"></span><br>
+              <br>
+
+              <input class="checkbox-input" type="checkbox" id="checkbox2">
+              <label class="checkbox2-label" for="checkbox2">
+                <span class="checkbox-icon"></span>
+                Je souhaite être prévenu des prochains évènements.
+              </label>
+              <br>
+
+            </div>
+
+            <input class="btn-submit button" type="submit" value="C'est parti" onclick="validate()">
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer>
+    <p class="copyrights">
+      Copyright 2014 - 2022, GameOn Inc.
+    </p>
+  </footer>
+  <script src="modal.js"></script>
+</body>
+
+
 </html>
